@@ -28,6 +28,8 @@ public class MyMessageConsumerAsync implements MessageListener {
 
             consumer.setMessageListener(this);
 
+            //if the sleep is outside the try it will not work
+            //because connection etc will be closed
             while(true){
                 Thread.sleep(1000);
             }
