@@ -26,7 +26,9 @@ public class MyMessageConsumer {
 
                 connection.start();
                 Message message = consumer.receive(1000);
-                System.out.println("melding mottatt: " + ((TextMessage)message).getText());
+                if (message != null) {
+                    System.out.println("melding mottatt: " + ((TextMessage) message).getText());
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();

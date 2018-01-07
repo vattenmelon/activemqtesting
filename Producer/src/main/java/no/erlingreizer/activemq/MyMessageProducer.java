@@ -3,6 +3,8 @@ package no.erlingreizer.activemq;
 import org.apache.qpid.jms.JmsConnectionFactory;
 
 import javax.jms.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class MyMessageProducer {
 
@@ -25,7 +27,7 @@ public class MyMessageProducer {
             try (MessageProducer producer = session.createProducer(destination)) {
 
                 connection.start();
-                Message message = session.createTextMessage("this is a test");
+                Message message = session.createTextMessage("this is a test " + LocalDateTime.now());
                 producer.send(message);
             }
         } catch (Exception ex) {
