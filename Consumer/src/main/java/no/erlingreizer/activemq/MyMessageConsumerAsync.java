@@ -24,14 +24,15 @@ public class MyMessageConsumerAsync implements MessageListener {
             connection.start();
 
             Destination destination = session.createQueue("TEST.QUEUE");
-            MessageConsumer consumer = session.createConsumer(destination);
+            try (MessageConsumer consumer = session.createConsumer(destination)){
 
-            consumer.setMessageListener(this);
+                consumer.setMessageListener(this);
 
-            //if the sleep is outside the try it will not work
-            //because connection etc will be closed
-            while(true){
-                Thread.sleep(1000);
+                //if the sleep is outside the try it will not work
+                //because connection etc will be closed
+                while (true) {
+                    Thread.sleep(1000);
+                }
             }
 
         } catch (Exception ex) {
